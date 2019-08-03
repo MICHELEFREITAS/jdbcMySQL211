@@ -22,7 +22,7 @@ public class Program {
 		
 		try {
 			conn = DB.getConnection();
-			
+			/*
 			//instancio o prepareStatement st usando o comando prepareStatement espera comando sql
 			//"?" simboliza o lugar onde vai colocar depois o valor
 			st = conn.prepareStatement("INSERT INTO seller "
@@ -38,6 +38,13 @@ public class Program {
 			st.setDate(3, new java.sql.Date(sdf.parse("22/04/1985").getTime()));
 			st.setDouble(4, 3000.0);
 			st.setInt(5, 4);
+			
+			*/
+			
+			//inserindo dois departamentos na tabela departament
+			st = conn.prepareStatement(
+					"INSERT INTO department (Name) values ('D1'), ('D2')",
+					Statement.RETURN_GENERATED_KEYS);
 			
 			//chama operação para alterar os dados
 			//o resultado da operação é um número inteiro indicando quantas linhas foram alteradas no BD
@@ -61,9 +68,9 @@ public class Program {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		catch(ParseException e) {
+		/*catch(ParseException e) {
 			e.printStackTrace();
-		}
+		}*/
 		finally{
 			//fechando comandos, sempre conexão por último
 			DB.closeStatement(st);
